@@ -1,0 +1,493 @@
+<title>Aanyaa Patel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Figtree:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: sticky header with three page tabs; each page is a resume-style ledger,
+   a narrow label column on the left and the content on the right. */
+:root {
+  --bg: #F2F5F1;
+  --surface: #FAFCF9;
+  --fg: #13211B;
+  --muted: #52625A;
+  --line: #D3DCD5;
+  --accent: #0E5A43;
+  --accent-fg: #FFFFFF;
+  --accent-soft: #DDEBE3;
+  --ball: #B42B33;
+  --font-display: 'Bricolage Grotesque', 'Helvetica Neue', Arial, sans-serif;
+  --font-body: 'Figtree', 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0C1511; --surface: #121D18; --fg: #E7EFEA; --muted: #9DB0A6; --line: #26362F;
+    --accent: #5CCB9E; --accent-fg: #06150F; --accent-soft: #16291F; --ball: #E0505A;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0C1511; --surface: #121D18; --fg: #E7EFEA; --muted: #9DB0A6; --line: #26362F;
+  --accent: #5CCB9E; --accent-fg: #06150F; --accent-soft: #16291F; --ball: #E0505A;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  padding-inline: 1.25rem;
+  padding-block: 0 3rem;
+}
+a { color: var(--accent); text-underline-offset: 0.2em; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
+h1, h2, h3, p, ul, dl, dd { margin: 0; }
+ul { padding: 0; list-style: none; }
+
+.wrap { max-width: 68rem; margin-inline: auto; }
+
+/* Header */
+.site-head {
+  position: sticky;
+  top: env(safe-area-inset-top, 0px);
+  z-index: 5;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+  margin-inline: -1.25rem;
+  padding-inline: 1.25rem;
+}
+.site-head .wrap {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+  gap: 0.25rem 1.5rem; padding-block: 0.75rem;
+}
+.wordmark { font-family: var(--font-display); font-weight: 700; font-size: 1.125rem; letter-spacing: -0.01em; }
+.tabs { display: flex; flex-wrap: wrap; gap: 0.25rem 1.5rem; }
+.tabs a {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  color: var(--muted); text-decoration: none; font-weight: 500; font-size: 0.9375rem;
+  padding-block: 0.375rem;
+}
+.tabs a:hover { color: var(--fg); }
+.tabs a[aria-current="page"] { color: var(--fg); }
+.dot {
+  width: 0.75rem; height: 0.75rem; border-radius: 50%;
+  border: 1.5px solid var(--line); background: transparent; flex: none;
+}
+.tabs a[aria-current="page"] .dot {
+  border-color: transparent;
+  background: radial-gradient(circle at 34% 30%, rgba(255,255,255,0.6) 0 12%, var(--ball) 42%);
+}
+
+/* Pages */
+.page { padding-block: 3rem 1rem; animation: rise 0.35s ease-out; }
+@keyframes rise { from { transform: translateY(8px); } to { transform: none; } }
+@media (prefers-reduced-motion: reduce) { .page { animation: none; } }
+
+.eyebrow {
+  font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--muted);
+}
+.page-title {
+  font-family: var(--font-display); font-weight: 700; letter-spacing: -0.025em; line-height: 1.02;
+  font-size: clamp(2.5rem, 7.5vw, 4.75rem); text-wrap: balance;
+}
+.lead { font-size: clamp(1.125rem, 2.2vw, 1.3125rem); line-height: 1.5; max-width: 38rem; text-wrap: pretty; }
+.prose { max-width: 38rem; color: var(--muted); text-wrap: pretty; }
+
+/* About */
+.hero { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 3rem; align-items: start; }
+.hero-main { display: flex; flex-direction: column; gap: 1.5rem; min-width: 0; }
+.glance { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 1.25rem 1.375rem; min-width: 0; }
+.glance dl { display: grid; gap: 0.875rem; margin-top: 0.875rem; }
+.glance dt { font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.glance dd { font-size: 0.9688rem; line-height: 1.45; overflow-wrap: anywhere; }
+.contact-row { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; }
+.copy {
+  font: inherit; font-size: 0.8125rem; font-weight: 500; cursor: pointer;
+  background: transparent; color: var(--accent); border: 1px solid var(--line);
+  border-radius: 4px; padding: 0.125rem 0.625rem;
+}
+.copy:hover { border-color: var(--accent); }
+
+.teaser { margin-top: 4rem; display: grid; gap: 1rem; }
+.teaser ul { border-top: 1px solid var(--line); }
+.teaser li { border-bottom: 1px solid var(--line); }
+.teaser a {
+  display: grid; grid-template-columns: 6.5rem minmax(0, 1fr); gap: 1rem; align-items: baseline;
+  padding-block: 0.875rem; color: var(--fg); text-decoration: none;
+}
+.teaser a:hover .t-name { color: var(--accent); text-decoration: underline; }
+.t-when { font-family: var(--font-mono); font-size: 0.8125rem; color: var(--muted); }
+.t-name { font-weight: 500; }
+
+/* Ledger sections */
+.block { display: grid; grid-template-columns: 11rem minmax(0, 1fr); gap: 1rem 3rem; padding-top: 1.5rem; margin-top: 3.5rem; border-top: 1px solid var(--line); }
+.page-head { display: flex; flex-direction: column; gap: 1rem; }
+.page-head + .block { margin-top: 3rem; }
+.label { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); font-weight: 500; padding-top: 0.375rem; }
+.entries { display: grid; gap: 2.25rem; min-width: 0; }
+.entry { display: grid; grid-template-columns: 9rem minmax(0, 1fr); gap: 0.5rem 1.5rem; }
+.when { font-family: var(--font-mono); font-size: 0.8125rem; color: var(--muted); padding-top: 0.3125rem; }
+.entry h3 { font-family: var(--font-display); font-weight: 700; font-size: 1.3125rem; line-height: 1.25; letter-spacing: -0.01em; text-wrap: balance; }
+.org { color: var(--muted); font-size: 0.9375rem; margin-top: 0.125rem; }
+.points { display: grid; gap: 0.5rem; margin-top: 0.875rem; max-width: 42rem; }
+.points li { position: relative; padding-left: 1.125rem; text-wrap: pretty; }
+.points li::before { content: ""; position: absolute; left: 0; top: 0.7em; width: 0.4375rem; height: 0.4375rem; border-radius: 50%; background: var(--accent); }
+.tags { display: flex; flex-wrap: wrap; gap: 0.375rem; margin-top: 0.875rem; }
+.tag { font-family: var(--font-mono); font-size: 0.75rem; background: var(--accent-soft); color: var(--fg); border-radius: 3px; padding: 0.125rem 0.5rem; }
+
+/* Background page */
+.skills { display: grid; gap: 1.25rem; }
+.skills dt { font-weight: 600; margin-bottom: 0.375rem; }
+.chips { display: flex; flex-wrap: wrap; gap: 0.375rem; }
+.chip { border: 1px solid var(--line); background: var(--surface); border-radius: 4px; padding: 0.125rem 0.625rem; font-size: 0.9063rem; }
+.honors { display: grid; gap: 0; border-top: 1px solid var(--line); }
+.honor { display: grid; grid-template-columns: 5rem minmax(0, 1fr); gap: 1.5rem; padding-block: 1rem; border-bottom: 1px solid var(--line); align-items: baseline; }
+.honor .yr { font-family: var(--font-mono); font-size: 1.125rem; font-weight: 500; color: var(--accent); font-variant-numeric: tabular-nums; }
+.honor h3 { font-weight: 600; font-size: 1.0625rem; line-height: 1.35; }
+.honor p { color: var(--muted); font-size: 0.9375rem; }
+
+.foot { margin-top: 4.5rem; padding-top: 1.25rem; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.5rem 1.5rem; color: var(--muted); font-size: 0.875rem; }
+
+@media (max-width: 52rem) {
+  .hero { grid-template-columns: minmax(0, 1fr); gap: 2.25rem; }
+  .block { grid-template-columns: minmax(0, 1fr); gap: 1.25rem; margin-top: 2.75rem; }
+  .label { padding-top: 0; }
+  .page { padding-block: 2.25rem 0.5rem; }
+}
+@media (max-width: 36rem) {
+  .entry { grid-template-columns: minmax(0, 1fr); }
+  .when { padding-top: 0; }
+  .teaser a { grid-template-columns: minmax(0, 1fr); gap: 0.125rem; }
+  .honor { grid-template-columns: minmax(0, 1fr); gap: 0.25rem; }
+}
+</style>
+
+<header class="site-head">
+  <div class="wrap">
+    <span class="wordmark">Aanyaa Patel</span>
+    <nav class="tabs" aria-label="Pages">
+      <a href="#about" data-go="about"><span class="dot" aria-hidden="true"></span>About</a>
+      <a href="#work" data-go="work"><span class="dot" aria-hidden="true"></span>Work &amp; Projects</a>
+      <a href="#background" data-go="background"><span class="dot" aria-hidden="true"></span>Background</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- PAGE 1: ABOUT -->
+  <section class="page" id="page-about">
+    <div class="hero">
+      <div class="hero-main">
+        <p class="eyebrow">Computer Engineering · Iowa State University</p>
+        <h1 class="page-title">Aanyaa Patel</h1>
+        <p class="lead">I study computer engineering at Iowa State and write C, Java and Python. I like the parts of computing that sit close to the hardware: memory management, graphics algorithms and logic circuits.</p>
+        <p class="prose">Before Iowa State I spent two years in the dual-degree CSE program at Nirma University in Ahmedabad, completing four semesters with a 9.23/10 GPA. I have interned in full stack web development and data analysis, and I play competitive snooker. I am the U21 National Champion for 2024.</p>
+      </div>
+
+      <aside class="glance" aria-label="At a glance">
+        <p class="eyebrow">At a glance</p>
+        <dl>
+          <div><dt>Based in</dt><dd>Ames, Iowa</dd></div>
+          <div><dt>Studying</dt><dd>B.S. Computer Engineering, Iowa State University (since Aug 2026)</dd></div>
+          <div><dt>Works in</dt><dd>Python, C, Java, JavaScript, C++</dd></div>
+          <div><dt>Speaks</dt><dd>English, Hindi, Gujarati</dd></div>
+          <div>
+            <dt>Email</dt>
+            <dd class="contact-row"><span id="email-text">aanyanpatel@hotmail.com</span><button class="copy" type="button" id="copy-email">Copy</button></dd>
+          </div>
+          <div><dt>GitHub</dt><dd><a href="https://github.com/aanya216" target="_blank" rel="noopener">github.com/aanya216</a></dd></div>
+        </dl>
+      </aside>
+    </div>
+
+    <section class="teaser" aria-labelledby="recent-h">
+      <p class="eyebrow" id="recent-h">Recent projects</p>
+      <ul>
+        <li><a href="#work" data-go="work"><span class="t-when">Apr 2026</span><span class="t-name">Memory Allocation in Operating Systems</span></a></li>
+        <li><a href="#work" data-go="work"><span class="t-when">Mar 2026</span><span class="t-name">Image Compression using Haar Wavelet Transform</span></a></li>
+        <li><a href="#work" data-go="work"><span class="t-when">Nov 2025</span><span class="t-name">Smart Pixel Editor</span></a></li>
+      </ul>
+    </section>
+  </section>
+
+  <!-- PAGE 2: WORK & PROJECTS -->
+  <section class="page" id="page-work" hidden>
+    <div class="page-head">
+      <p class="eyebrow">Work &amp; Projects</p>
+      <h1 class="page-title">What I have built and where I have worked</h1>
+    </div>
+
+    <section class="block" aria-labelledby="work-h">
+      <h2 class="label" id="work-h">Work experience</h2>
+      <div class="entries">
+        <article class="entry">
+          <p class="when">Aug 2026 – Present</p>
+          <div>
+            <h3>ISU Dining at Union Drive Community Centre</h3>
+            <p class="org">Iowa State University · Ames, IA</p>
+            <ul class="points">
+              <li>Support daily dining operations in a fast-paced team environment.</li>
+              <li>Provide customer service and maintain efficient, organized work areas.</li>
+            </ul>
+          </div>
+        </article>
+        <article class="entry">
+          <p class="when">10 – 25 Dec 2025</p>
+          <div>
+            <h3>Data Analyst Internship</h3>
+            <p class="org">Eris Life Sciences · Ahmedabad, Gujarat, India</p>
+            <ul class="points">
+              <li>Analyzed business datasets to extract actionable insights, supporting data-driven decision-making across departments.</li>
+              <li>Built and maintained data pipelines and dashboards using Python and Excel, enabling efficient reporting and trend analysis.</li>
+              <li>Collaborated with the tech team to clean, transform, and visualize data, contributing to improved operational insights.</li>
+            </ul>
+          </div>
+        </article>
+        <article class="entry">
+          <p class="when">May – Jun 2025</p>
+          <div>
+            <h3>Full Stack Web-Development Internship</h3>
+            <p class="org">Eris Life Sciences, Tech Department · Ahmedabad, Gujarat, India</p>
+            <ul class="points">
+              <li>Collaborated with senior engineers on developing and optimizing internal web applications.</li>
+              <li>Built responsive UI components using HTML, CSS, JavaScript, and integrated REST APIs.</li>
+              <li>Improved frontend performance and consistency across multiple modules.</li>
+              <li>Contributed to debugging, code reviews, and data-driven dashboard development.</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="block" aria-labelledby="proj-h">
+      <h2 class="label" id="proj-h">Projects</h2>
+      <div class="entries">
+        <article class="entry">
+          <p class="when">Apr 2026</p>
+          <div>
+            <h3>Memory Allocation in Operating Systems</h3>
+            <ul class="points">
+              <li>Implemented and compared dynamic memory allocation strategies including First Fit, Best Fit, and Worst Fit algorithms, analyzing fragmentation and efficiency in simulated OS environments.</li>
+              <li>Demonstrated understanding of OS memory management concepts including heap allocation, deallocation, and compaction techniques.</li>
+            </ul>
+            <div class="tags"><span class="tag">Operating systems</span><span class="tag">First / Best / Worst Fit</span></div>
+          </div>
+        </article>
+        <article class="entry">
+          <p class="when">Mar 2026</p>
+          <div>
+            <h3>Image Compression using Haar Wavelet Transform</h3>
+            <ul class="points">
+              <li>Developed an image compression pipeline using the Haar Wavelet Transform, applying multi-level decomposition to reduce image data while preserving visual quality.</li>
+              <li>Analyzed compression ratios and reconstruction accuracy across varying threshold levels, demonstrating practical knowledge of signal processing and linear algebra applications in computer vision.</li>
+            </ul>
+            <div class="tags"><span class="tag">Signal processing</span><span class="tag">Linear algebra</span></div>
+          </div>
+        </article>
+        <article class="entry">
+          <p class="when">Nov 2025</p>
+          <div>
+            <h3>Smart Pixel Editor</h3>
+            <ul class="points">
+              <li>Developed a Java-based image editing application in a team of three, enabling users to upload images and perform single-click color transformations using pixel color mapping.</li>
+              <li>Implemented automatic region recoloring, theme filters (warm, cool, grayscale), and brightness/contrast adjustments through custom pixel-level algorithms.</li>
+              <li>Focused on interactive UI design and optimized color processing, delivering an efficient and intuitive photo-editing experience.</li>
+            </ul>
+            <div class="tags"><span class="tag">Java</span><span class="tag">Team of three</span></div>
+          </div>
+        </article>
+        <article class="entry">
+          <p class="when">Oct 2025</p>
+          <div>
+            <h3>Pixel Flood Fill Algorithm</h3>
+            <ul class="points">
+              <li>Implemented a Pixel Flood Fill Algorithm in C using the Raylib graphics library, applying a BFS-based queue structure for efficient real-time region coloring.</li>
+              <li>Integrated interactive user input and data structure optimization to simulate in-game coloring behavior, forming the basis for a 2D game engine prototype.</li>
+            </ul>
+            <div class="tags"><span class="tag">C</span><span class="tag">Raylib</span><span class="tag">BFS</span></div>
+          </div>
+        </article>
+        <article class="entry">
+          <p class="when">Oct 2025</p>
+          <div>
+            <h3>Booth's Division Algorithm</h3>
+            <ul class="points">
+              <li>Designed and simulated Booth's Division Algorithm in Logisim, implementing binary signed division using combinational and sequential circuits.</li>
+              <li>Demonstrated a clear understanding of arithmetic logic design and computer architecture concepts.</li>
+            </ul>
+            <div class="tags"><span class="tag">Logisim</span><span class="tag">Computer architecture</span></div>
+          </div>
+        </article>
+        <article class="entry">
+          <p class="when">Nov 2024</p>
+          <div>
+            <h3>Subway Management System</h3>
+            <ul class="points">
+              <li>Co-developed a Subway Management System in C, handling complete order processing, food customization, and payment management through structured menus and modular design.</li>
+              <li>Focused on efficient data handling and user interaction, delivering a smooth and realistic restaurant simulation.</li>
+            </ul>
+            <div class="tags"><span class="tag">C</span><span class="tag">Co-developed</span></div>
+          </div>
+        </article>
+        <article class="entry">
+          <p class="when">Oct 2024</p>
+          <div>
+            <h3>Tic Tac Toe Game</h3>
+            <ul class="points">
+              <li>Designed and simulated a Tic-Tac-Toe game circuit in Logisim using combinational logic and state-based control.</li>
+              <li>Implemented board logic, win-detection circuits, and input selection using multiplexers and decoders.</li>
+              <li>Demonstrated an understanding of digital logic design, circuit modularity, and interactive system simulation.</li>
+            </ul>
+            <div class="tags"><span class="tag">Logisim</span><span class="tag">Digital logic</span></div>
+          </div>
+        </article>
+      </div>
+    </section>
+  </section>
+
+  <!-- PAGE 3: BACKGROUND -->
+  <section class="page" id="page-background" hidden>
+    <div class="page-head">
+      <p class="eyebrow">Background</p>
+      <h1 class="page-title">Education, skills and honors</h1>
+    </div>
+
+    <section class="block" aria-labelledby="edu-h">
+      <h2 class="label" id="edu-h">Education</h2>
+      <div class="entries">
+        <article class="entry">
+          <p class="when">Aug 2026 – Present</p>
+          <div>
+            <h3>Iowa State University</h3>
+            <p class="org">Ames, IA · B.S. in Computer Engineering</p>
+          </div>
+        </article>
+        <article class="entry">
+          <p class="when">2024 – 2026</p>
+          <div>
+            <h3>Nirma University</h3>
+            <p class="org">Ahmedabad, India · B.S. CSE Dual Degree Program</p>
+            <ul class="points">
+              <li>GPA: 9.23/10</li>
+              <li>Completed Semesters I–IV</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="block" aria-labelledby="lead-h">
+      <h2 class="label" id="lead-h">Leadership &amp; activities</h2>
+      <div class="entries">
+        <article class="entry">
+          <p class="when">3 months</p>
+          <div>
+            <h3>Assistant Teacher</h3>
+            <p class="org">Manav Education</p>
+            <ul class="points">
+              <li>Tutored students of Grade 5–8 across all subjects and was awarded a stipend for good performance.</li>
+              <li>Drafted and checked exam papers for Grades 9–10 and earned a stipend for assessment duties.</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="block" aria-labelledby="skills-h">
+      <h2 class="label" id="skills-h">Skills</h2>
+      <dl class="skills">
+        <div>
+          <dt>Programming</dt>
+          <dd class="chips"><span class="chip">Python</span><span class="chip">C</span><span class="chip">Java</span><span class="chip">JavaScript</span><span class="chip">C++</span></dd>
+        </div>
+        <div>
+          <dt>Tools &amp; concepts</dt>
+          <dd class="chips"><span class="chip">GitHub</span><span class="chip">REST APIs</span><span class="chip">Operating Systems</span><span class="chip">Computer Architecture</span><span class="chip">Digital Logic</span><span class="chip">Data Structures</span><span class="chip">Logisim</span><span class="chip">Raylib</span></dd>
+        </div>
+        <div>
+          <dt>Languages</dt>
+          <dd class="chips"><span class="chip">English (fluent)</span><span class="chip">Hindi (native)</span><span class="chip">Gujarati (native)</span></dd>
+        </div>
+      </dl>
+    </section>
+
+    <section class="block" aria-labelledby="honors-h">
+      <h2 class="label" id="honors-h">Honors &amp; accomplishments</h2>
+      <div class="honors">
+        <article class="honor">
+          <p class="yr">2025</p>
+          <div><h3>Emerging Player of the Year</h3><p>Sports Journalists Association of Gujarat</p></div>
+        </article>
+        <article class="honor">
+          <p class="yr">2024</p>
+          <div><h3>U21 National Snooker Champion</h3><p>Indore</p></div>
+        </article>
+        <article class="honor">
+          <p class="yr">2024</p>
+          <div><h3>U21 World Snooker Championship, Rank 5</h3><p>Bangalore</p></div>
+        </article>
+        <article class="honor">
+          <p class="yr">2024</p>
+          <div><h3>Sports Excellence Award</h3><p>Sports Authority of Gujarat</p></div>
+        </article>
+      </div>
+    </section>
+  </section>
+
+  <footer class="foot">
+    <span>Aanyaa Patel · Ames, Iowa</span>
+    <a href="https://github.com/aanya216" target="_blank" rel="noopener">github.com/aanya216</a>
+  </footer>
+</main>
+
+<script>
+(function () {
+  var pages = ['about', 'work', 'background'];
+  var links = document.querySelectorAll('.tabs a');
+
+  function show(id, remember) {
+    if (pages.indexOf(id) === -1) id = 'about';
+    pages.forEach(function (p) {
+      document.getElementById('page-' + p).hidden = (p !== id);
+    });
+    links.forEach(function (a) {
+      if (a.dataset.go === id) a.setAttribute('aria-current', 'page');
+      else a.removeAttribute('aria-current');
+    });
+    window.scrollTo(0, 0);
+    if (remember) {
+      try { history.replaceState(null, '', '#' + id); } catch (e) {}
+    }
+  }
+
+  document.querySelectorAll('[data-go]').forEach(function (el) {
+    el.addEventListener('click', function (ev) {
+      ev.preventDefault();
+      show(el.dataset.go, true);
+    });
+  });
+  window.addEventListener('hashchange', function () {
+    show(location.hash.replace('#', ''), false);
+  });
+  show(location.hash.replace('#', '') || 'about', false);
+
+  var btn = document.getElementById('copy-email');
+  var txt = document.getElementById('email-text');
+  btn.addEventListener('click', function () {
+    var done = function () { btn.textContent = 'Copied'; setTimeout(function () { btn.textContent = 'Copy'; }, 1600); };
+    var fallback = function () {
+      var r = document.createRange(); r.selectNodeContents(txt);
+      var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+      btn.textContent = 'Selected'; setTimeout(function () { btn.textContent = 'Copy'; }, 1600);
+    };
+    try {
+      navigator.clipboard.writeText(txt.textContent).then(done, fallback);
+    } catch (e) { fallback(); }
+  });
+})();
+</script>
